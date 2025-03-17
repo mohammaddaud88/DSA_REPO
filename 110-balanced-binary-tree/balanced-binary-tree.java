@@ -18,6 +18,10 @@ class Solution {
         if (root == null) {
             return true;
         }
+
+        
+
+
         // int left = leftHeight(root);
         // int right = rightHeight(root);
         // return Math.abs(left - right) <= 1;
