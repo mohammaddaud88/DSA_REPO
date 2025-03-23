@@ -1,32 +1,32 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
-        int low = 0;
-        int high = (int ) 1e8;
+        int i=0;
+        int j= (int)1e9;
         int ans =-1;
-        while(low <= high){
-            int mid = low + (high-low)/2;
+        while(i<=j){
+            int mid = (i+j)/2;
             if(isPossible(weights,mid,days)){
                 ans = mid;
-                high = mid-1;
+                j = mid-1;
             } else {
-                low = mid+1;
+                i = mid+1;
             }
         }
         return ans;
     }
-    public boolean isPossible(int [] arr, int target, int days){
+    public boolean isPossible(int [] arr, int target, int maxDays){
         int day =1;
         int sum =0;
         for(int i=0;i<arr.length;i++){
-            if(arr[i]>target){
+            if(arr[i] > target){
                 return false;
-            } else if(arr[i]+sum <=target){
-                sum +=arr[i];
-            } else {
-                sum=arr[i];
+            }else if(sum + arr[i] <= target){
+                sum += arr[i];
+            }else {
                 day++;
+                sum = arr[i];
             }
         }
-        return day<=days;
+        return day <= maxDays;
     }
 }
